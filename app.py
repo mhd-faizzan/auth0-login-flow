@@ -20,6 +20,8 @@ with open("configs/config.yaml") as f:
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", config["app"]["secret_key"])
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"  # fixes state mismatch on callback
+app.config["SESSION_COOKIE_SECURE"] = False
 
 oauth = OAuth(app)
 
