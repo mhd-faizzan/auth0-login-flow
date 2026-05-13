@@ -1,0 +1,10 @@
+app:
+  secret_key: "change-this-in-production"
+  port: 3000
+  debug: true
+
+auth0:
+  domain: ""        # your Auth0 domain e.g. dev-xxx.us.auth0.com
+  client_id: ""     # from Auth0 app settings
+  client_secret: "" # from Auth0 app settings
+  callback_url: "http://localhost:3000/callback"
