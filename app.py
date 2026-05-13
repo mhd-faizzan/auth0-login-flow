@@ -20,7 +20,7 @@ with open("configs/config.yaml") as f:
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", config["app"]["secret_key"])
-app.config["SESSION_COOKIE_SAMESITE"] = "Lax"  # fixes state mismatch on callback
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 app.config["SESSION_COOKIE_SECURE"] = False
 
 oauth = OAuth(app)
@@ -78,7 +78,9 @@ def profile():
 def logout():
     session.clear()
     return redirect(
-        f'https://{os.getenv("AUTH0_DOMAIN")}/v2/logout?returnTo={url_for("home", _external=True)}'
+        f'https://{os.getenv("AUTH0_DOMAIN")}/v2/logout'
+        f'?returnTo={url_for("home", _external=True)}'
+        f'&client_id={os.getenv("AUTH0_CLIENT_ID")}'
     )
 
 
